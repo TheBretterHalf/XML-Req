@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="name">
+        <form>
+            <input type="text" id="searchterm"/>
+            <input id="submit" type="Submit"/>
+        </form>
+    </div>
+    <script type="text/javascript">
+        function loadText (){
+            var xhrCall = new XMLHttpRequest();
+            
+            document.getElementById("submit").addEventListener('click', loadText)
+            
+            var searchterm = document.getElementById("searchterm").value
+            
+            console.log(searchterm)
+            
+            var url = "https://newsapi.org/v2/everything?q="+ searchterm +"&from=2019-03-13&sortBy=publishedAt&apiKey=2305a7287404486e96024e65d3269a4b"
+            //console.log(xhrCall)
+            
+            xhrCall.open("GET", url, true);
+            //.onload checks the readystate automatically but not the status
+            
+            xhrCall.onload = function(){
+                if (this.status ==200){
+                    var data = (JSON.parse(this.responseText));
+                    console.log(data)
+
+                }
+                
+            }
+            xhrCall.send();
+            
+        }
+        
+        //2305a7287404486e96024e65d3269a4b
+    </script>
+</body>
+</html>
